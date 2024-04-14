@@ -32,6 +32,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 icon: Icon(Icons.search),
                 label: 'Search',
                 selectedIcon: Icon(Icons.search_rounded),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.favorite_border_rounded),
+                label: 'Favorite',
+                selectedIcon: Icon(Icons.favorite),
               )
             ]),
       ),

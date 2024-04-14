@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:food_calories/ui/screens/favorite.dart';
-import 'package:food_calories/ui/screens/search.dart';
+import 'package:food_calories/ui/screens/favorite_screen.dart';
+import 'package:food_calories/ui/screens/home_screen.dart';
+import 'package:food_calories/ui/screens/search_screen.dart';
 import 'package:food_calories/ui/widgets/bottom_navigation.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeState extends State<Home> {
   int index = 0;
 
   onTapFunc(value) {
@@ -20,13 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final screens = [FavoriteScreen(), SearchScreen()];
+  final screens = [HomeScreen(), SearchScreen(), FavoriteScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: screens[index],
-        backgroundColor: const Color.fromARGB(255, 255, 255, 240),
         bottomNavigationBar: BottomNavigation(
             onTapFunc: (value) {
               onTapFunc(value);
