@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BottomNavigation extends StatefulWidget {
+class BottomNavigation extends StatelessWidget {
   const BottomNavigation(
       {super.key, required this.onTapFunc, required this.index});
 
@@ -8,19 +8,14 @@ class BottomNavigation extends StatefulWidget {
   final void Function(int value) onTapFunc;
 
   @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
-}
-
-class _BottomNavigationState extends State<BottomNavigation> {
-  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
+    return Container(
+      color: const Color.fromARGB(255, 255, 255, 240),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: NavigationBar(
-            onDestinationSelected: widget.onTapFunc,
-            selectedIndex: widget.index,
+            onDestinationSelected: onTapFunc,
+            selectedIndex: index,
             backgroundColor: Colors.grey,
             destinations: const [
               NavigationDestination(

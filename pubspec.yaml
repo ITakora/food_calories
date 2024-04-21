@@ -35,6 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   percent_indicator: ^4.2.3
+
+  flutter_riverpod: ^2.4.10
+  cached_network_image: ^3.3.1
   # persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
