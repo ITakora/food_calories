@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_calories/data/datas/calorie_data.dart';
+import 'package:food_calories/ui/widgets/home_card.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -51,6 +52,7 @@ class HomeScreen extends ConsumerWidget {
             ],
           )),
         ),
+        const SizedBox(height: 30),
         foodData.when(
           error: (error, stackTrace) => Text(error.toString()),
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -63,25 +65,7 @@ class HomeScreen extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final dataFood = data[index];
 
-                  return SizedBox(
-                    width: 150,
-                    height: 150,
-                    child: Card(
-                      child: Column(children: [
-                        Text(dataFood.name),
-                        Row(
-                          children: [
-                            Text('Calories : ${dataFood.calories.toString()}'),
-                            const SizedBox(width: 10),
-                            Text('Proteins : ${dataFood.proteins.toString()}'),
-                            const SizedBox(width: 10),
-                            Text(
-                                'Carbohydrate : ${dataFood.carbohydrate.toString()}'),
-                          ],
-                        )
-                      ]),
-                    ),
-                  );
+                  return HomeCard(data: dataFood);
                 },
               ),
             );
