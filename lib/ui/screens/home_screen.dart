@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final calorie = ref.watch(calorieState);
-
+    final userCalorie = 0;
     final foodData = ref.watch(calorieData);
 
     return Scaffold(
@@ -36,8 +36,8 @@ class HomeScreen extends ConsumerWidget {
                 radius: 70.0,
                 lineWidth: 8.0,
                 animation: true,
-                center: Text(calorieUser),
-                percent: 1,
+                center: Text(userCalorie.toString()),
+                percent: (userCalorie / double.parse(calorieUser)),
                 progressColor: Colors.green,
               ),
               const SizedBox(width: 20),

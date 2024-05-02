@@ -9,40 +9,58 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      height: 210,
-      child: Card(
-        child: Column(children: [
-          CachedNetworkImage(
-            imageUrl: data.image,
-            imageBuilder: (context, imageProvider) => Container(
-              margin: const EdgeInsets.only(top: 25),
-              width: double.infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: SizedBox(
+        height: 210,
+        child: Card(
+          child: Stack(alignment: Alignment.center, children: [
+            CachedNetworkImage(
+              filterQuality: FilterQuality.high,
+              imageUrl: data.image,
+              imageBuilder: (context, imageProvider) => Container(
+                // margin: const EdgeInsets.only(top: 25),
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-          Text(data.name),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Calories : ${data.calories.toString()}'),
-              const SizedBox(width: 10),
-              Text('Proteins : ${data.proteins.toString()}'),
-              const SizedBox(width: 10),
-              Text('Carbohydrate : ${data.carbohydrate.toString()}'),
-            ],
-          )
-        ]),
+            Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.white, Colors.transparent],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.center)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    data.name,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Calories : ${data.calories.toString()}'),
+                      const SizedBox(width: 10),
+                      Text('Proteins : ${data.proteins.toString()}'),
+                      const SizedBox(width: 10),
+                      Text('Carbohydrate : ${data.carbohydrate.toString()}'),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }
